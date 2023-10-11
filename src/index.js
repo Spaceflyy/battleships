@@ -1,11 +1,11 @@
-import "./style.css";
+function ship(shipLength) {
+	const length = shipLength;
+	let hits = 0;
+	const isSunk = false;
 
-function component() {
-	const a = document.createElement("h2");
-	a.innerHTML = "hello my guy";
-	a.classList.add("hello");
+	const hit = () => (hits += 1);
+	const getHits = () => hits;
 
-	return a;
+	return { length, hits, isSunk, hit, getHits };
 }
-
-document.body.appendChild(component());
+module.exports = ship;
