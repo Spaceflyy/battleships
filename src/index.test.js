@@ -6,6 +6,7 @@ describe("Ship tests", () => {
 	beforeEach(() => {
 		newShip = ship(3);
 	});
+
 	test("Factory creates ship correctly", () => {
 		expect(newShip).toMatchObject({ length: 3, hits: 0, isSunk: false });
 	});
@@ -19,7 +20,7 @@ describe("Ship tests", () => {
 		newShip.setHits();
 		newShip.setHits();
 		newShip.setHits();
-		newShip.setSunk();
+
 		expect(newShip.getSunk()).toBe(true);
 	});
 });
