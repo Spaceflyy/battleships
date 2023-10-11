@@ -1,11 +1,17 @@
 function ship(shipLength) {
 	const length = shipLength;
 	let hits = 0;
-	const isSunk = false;
+	let isSunk = false;
 
-	const hit = () => (hits += 1);
+	const setHits = () => (hits += 1);
 	const getHits = () => hits;
+	const setSunk = () => {
+		if (hits >= length) {
+			isSunk = true;
+		}
+	};
+	const getSunk = () => isSunk;
 
-	return { length, hits, isSunk, hit, getHits };
+	return { length, hits, isSunk, setHits, getHits, setSunk, getSunk };
 }
 module.exports = ship;

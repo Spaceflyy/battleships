@@ -1,14 +1,25 @@
 const ship = require("./index");
 
 describe("Ship tests", () => {
-	const newShip = ship(3);
+	let newShip;
 
+	beforeEach(() => {
+		newShip = ship(3);
+	});
 	test("Factory creates ship correctly", () => {
 		expect(newShip).toMatchObject({ length: 3, hits: 0, isSunk: false });
 	});
 
 	test("Increases number of hits correctly", () => {
-		newShip.hit();
+		newShip.setHits();
 		expect(newShip.getHits()).toBe(1);
+	});
+
+	test("Checks if ship is sunk after recieving correct number of hits", () => {
+		newShip.setHits();
+		newShip.setHits();
+		newShip.setHits();
+		newShip.setSunk();
+		expect(newShip.getSunk()).toBe(true);
 	});
 });
