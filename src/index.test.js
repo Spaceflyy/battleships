@@ -4,7 +4,7 @@ describe("Ship tests", () => {
 	let newShip;
 
 	beforeEach(() => {
-		newShip = ship(3);
+		newShip = ship(3, "Destroyer");
 	});
 
 	test("Factory creates ship correctly", () => {

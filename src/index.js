@@ -1,7 +1,8 @@
-function ship(shipLength) {
+function ship(shipLength, shipName) {
 	const length = shipLength;
 	let hits = 0;
 	let isSunk = false;
+	const name = shipName;
 
 	const checkSunk = () => {
 		if (hits === length) {
@@ -17,6 +18,6 @@ function ship(shipLength) {
 		}
 	};
 
-	return { length, hits, isSunk, setHits, getHits, checkSunk, getSunk };
+	return { name, length, hits, isSunk, setHits, getHits, checkSunk, getSunk };
 }
 module.exports = ship;
