@@ -1,4 +1,4 @@
-const ship = require("./index");
+const ship = require("./ship");
 const gameBoard = require("./gameboard");
 
 describe("Gameboard tests", () => {
@@ -20,9 +20,16 @@ describe("Gameboard tests", () => {
 		expect(newGameboard.getBoard()[3][0].taken).toBe(null);
 	});
 
-	test("Test if gameboard recieves attacks correctly", () => {
+	test("Test if gameboard and ship recieves attacks correctly", () => {
 		newGameboard.placeShip(newShip, 0, 0);
 		newGameboard.receiveAttack(0, 0);
+
 		expect(newGameboard.getPlacedShips()[0].getHits()).toBe(1);
+	});
+
+	test("Test if gameboard records misses correctly", () => {
+		newGameboard.placeShip(newShip, 0, 0);
+		newGameboard.receiveAttack(0, 0);
+		expect(newGameboard.getBoard()[0][0].taken).toBe("miss");
 	});
 });

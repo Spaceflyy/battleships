@@ -36,8 +36,11 @@ function gameBoard() {
 
 	const receiveAttack = (x, y) => {
 		const shipAtLoc = _placedShips[getShip(x, y)];
-
-		shipAtLoc.setHits();
+		if (shipAtLoc !== undefined) {
+			shipAtLoc.setHits();
+		} else {
+			_board[x][y].taken = "miss";
+		}
 	};
 
 	return {

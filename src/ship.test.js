@@ -1,4 +1,4 @@
-const ship = require("./index");
+const ship = require("./ship");
 
 describe("Ship tests", () => {
 	let newShip;
