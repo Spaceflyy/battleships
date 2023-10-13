@@ -12,6 +12,17 @@ describe("Gameboard tests", () => {
 
 	test("Places ship on board at correct positon", () => {
 		newGameboard.placeShip(newShip, 0, 0);
-		expect(newGameboard.getBoard()[0][0].taken).toBe(newShip.name);
+
+		for (let i = 0; i < newShip.getLength(); i++) {
+			expect(newGameboard.getBoard()[i][0].taken).toBe(newShip.getName());
+		}
+
+		expect(newGameboard.getBoard()[3][0].taken).toBe(null);
+	});
+
+	test("Test if gameboard recieves attacks correctly", () => {
+		newGameboard.placeShip(newShip, 0, 0);
+		newGameboard.receiveAttack(0, 0);
+		expect(newGameboard.getPlacedShips()[0].getHits()).toBe(1);
 	});
 });

@@ -8,7 +8,10 @@ describe("Ship tests", () => {
 	});
 
 	test("Factory creates ship correctly", () => {
-		expect(newShip).toMatchObject({ length: 3, hits: 0, isSunk: false });
+		expect(newShip.getName()).toBe("Destroyer");
+		expect(newShip.getLength()).toBe(3);
+		expect(newShip.getHits()).toBe(0);
+		expect(newShip.getSunk()).toBe(false);
 	});
 
 	test("Increases number of hits correctly", () => {

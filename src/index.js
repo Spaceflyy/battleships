@@ -1,23 +1,34 @@
+/* eslint-disable no-underscore-dangle */
 function ship(shipLength, shipName) {
-	const length = shipLength;
-	let hits = 0;
-	let isSunk = false;
-	const name = shipName;
+	const _length = shipLength;
+	let _hits = 0;
+	let _isSunk = false;
+	const _name = shipName;
+
+	const getSunk = () => _isSunk;
+	const getHits = () => _hits;
+	const getLength = () => _length;
+	const getName = () => _name;
 
 	const checkSunk = () => {
-		if (hits === length) {
-			isSunk = true;
+		if (_hits === _length) {
+			_isSunk = true;
 		}
 	};
-	const getSunk = () => isSunk;
-	const getHits = () => hits;
+
 	const setHits = () => {
-		if (getHits() < length) {
-			hits += 1;
+		if (getHits() < _length) {
+			_hits += 1;
 			checkSunk();
 		}
 	};
 
-	return { name, length, hits, isSunk, setHits, getHits, checkSunk, getSunk };
+	return {
+		getName,
+		getLength,
+		setHits,
+		getHits,
+		getSunk,
+	};
 }
 module.exports = ship;

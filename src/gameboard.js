@@ -1,25 +1,50 @@
+/* eslint-disable no-underscore-dangle */
 function gameBoard() {
-	const board = [];
+	const _board = [];
+	const _placedShips = [];
+
+	const getBoard = () => _board;
+
+	const getShip = (x, y) => {
+		for (let i = 0; i < _placedShips.length; i++) {
+			if (_placedShips[i].getName() === _board[x][y].taken) {
+				return i;
+			}
+		}
+	};
+
+	const getPlacedShips = () => _placedShips;
+
 	(function setupBoard() {
 		for (let i = 0; i < 10; i++) {
-			board[i] = [];
+			_board[i] = [];
 			for (let j = 0; j < 10; j++) {
-				board[i][j] = {
+				_board[i][j] = {
 					location: [i, j],
-					taken: false,
+					taken: null,
 				};
 			}
 		}
 	})();
-	const getBoard = () => board;
+
 	const placeShip = (ship, x, y) => {
-		getBoard()[x][y].taken = ship.name;
+		for (let i = x; i < ship.getLength(); i++) {
+			_board[i][y].taken = ship.getName();
+		}
+		_placedShips.push(ship);
+	};
+
+	const receiveAttack = (x, y) => {
+		const shipAtLoc = _placedShips[getShip(x, y)];
+
+		shipAtLoc.setHits();
 	};
 
 	return {
-		board,
 		placeShip,
 		getBoard,
+		receiveAttack,
+		getPlacedShips,
 	};
 }
 
