@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-function ship(shipLength, shipName) {
+export default function ship(shipLength, shipName) {
 	const _length = shipLength;
 	let _hits = 0;
 	let _isSunk = false;
@@ -31,4 +31,3 @@ function ship(shipLength, shipName) {
 		getSunk,
 	};
 }
-module.exports = ship;

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-function gameBoard() {
+export default function gameBoard() {
 	const _board = [];
 	const _placedShips = [];
 
@@ -55,5 +55,3 @@ function gameBoard() {
 		allShipsSunk,
 	};
 }
-
-module.exports = gameBoard;

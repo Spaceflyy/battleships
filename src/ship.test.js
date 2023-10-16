@@ -1,4 +1,4 @@
-const ship = require("./ship");
+import ship from "./ship";
 
 describe("Ship tests", () => {
 	let newShip;
