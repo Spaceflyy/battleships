@@ -30,7 +30,7 @@ export default function gameBoard() {
 	const getPlacedShips = () => _placedShips;
 
 	const placeShip = (ship, x, y) => {
-		for (let i = x; i < ship.getLength(); i += 1) {
+		for (let i = x; i < x + ship.getLength(); i += 1) {
 			_board[i][y].taken = ship.getName();
 		}
 		_placedShips.push(ship);

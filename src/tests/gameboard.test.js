@@ -1,6 +1,6 @@
-import gameBoard from "./gameboard";
+import gameBoard from "../gameboard";
 
-import ship from "./ship";
+import ship from "../ship";
 
 describe("Gameboard tests", () => {
 	let newShip;
