@@ -1,3 +1,34 @@
 .hello {
 	color: red;
 }
+* {
+	box-sizing: border-box;
+}
+
+body,
+html,
+#boardContainer {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#boardContainer {
+	display: flex;
+	gap: 50px;
+	align-items: center;
+	justify-content: center;
+}
+#player1BoardContainer,
+#player2BoardContainer {
+	display: flex;
+	width: 500px;
+	height: 500px;
+	flex-wrap: wrap;
+}
+
+.boardCell {
+	height: 50px;
+	width: 50px;
+	border: red solid 1px;
+}

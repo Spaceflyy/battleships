@@ -1,11 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import player from "./player";
+
 import ship from "./ship";
 
 export default function gameController() {
-	const newGame = () => {
-		const player1 = player("Luke");
-		const computer = player("Computer");
+	const newGame = (player1, player2) => {
 		const ships = [
 			ship(5, "Carrier"),
 			ship(4, "Battleship"),
@@ -20,11 +18,11 @@ export default function gameController() {
 		player1._playerBoard.placeShip(ships[3], 0, 6);
 		player1._playerBoard.placeShip(ships[4], 0, 8);
 
-		computer._playerBoard.placeShip(ships[0], 5, 0);
-		computer._playerBoard.placeShip(ships[1], 6, 2);
-		computer._playerBoard.placeShip(ships[2], 7, 4);
-		computer._playerBoard.placeShip(ships[3], 8, 6);
-		computer._playerBoard.placeShip(ships[4], 8, 8);
+		player2._playerBoard.placeShip(ships[0], 5, 0);
+		player2._playerBoard.placeShip(ships[1], 6, 2);
+		player2._playerBoard.placeShip(ships[2], 7, 4);
+		player2._playerBoard.placeShip(ships[3], 7, 6);
+		player2._playerBoard.placeShip(ships[4], 8, 8);
 	};
 
 	const startGame = () => {

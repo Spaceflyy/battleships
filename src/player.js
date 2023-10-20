@@ -23,4 +23,4 @@ const player = (pName) => {
 	return { getPlayerName, _playerBoard, launchAttack, generateRandomCoord };
 };
 
-export default { player };
+export default player;
