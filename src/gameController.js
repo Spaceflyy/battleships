@@ -3,6 +3,8 @@
 import ship from "./ship";
 
 export default function gameController() {
+	const currentTurn = 1;
+
 	const newGame = (player1, player2) => {
 		const ships = [
 			ship(5, "Carrier"),

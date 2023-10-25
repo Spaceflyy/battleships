@@ -10,6 +10,7 @@ export default function gameBoard() {
 				_board[i][j] = {
 					location: [i, j],
 					taken: null,
+					status: null,
 				};
 			}
 		}
@@ -39,9 +40,10 @@ export default function gameBoard() {
 	const receiveAttack = (x, y) => {
 		const shipAtLoc = _placedShips[getShip(x, y)];
 		if (shipAtLoc !== undefined) {
+			_board[x][y].status = "hit";
 			shipAtLoc.setHits();
 		} else {
-			_board[x][y].taken = "miss";
+			_board[x][y].status = "miss";
 		}
 	};
 
