@@ -9,8 +9,12 @@ const player = (pName) => {
 	const _moves = [];
 	const getPlayerName = () => _name;
 
-	const checkAlreadyPicked = (x, y) =>
-		JSON.stringify(_shotsTaken).includes(JSON.stringify([x, y]));
+	const checkAlreadyPicked = (x, y) => {
+		console.log(JSON.stringify(_shotsTaken));
+		console.log(JSON.stringify([x, y]));
+		JSON.stringify(_shotsTaken);
+		return JSON.stringify(_shotsTaken).includes(JSON.stringify([x, y]));
+	};
 
 	const launchAttack = (enemyBoard, x, y) => {
 		enemyBoard.receiveAttack(x, y);

@@ -15,25 +15,24 @@ view.renderBoards(player1, 1);
 view.renderBoards(computer, 2);
 const handleClick = (event) => {
 	const { target } = event;
-
+	const playerX = Number(target.getAttribute("data-coord-X"));
+	const playerY = Number(target.getAttribute("data-coord-Y"));
 	if (target.getAttribute("class") === "boardCell") {
-		const prev = [
-			target.getAttribute("data-coord-X"),
-			target.getAttribute("data-coord-Y"),
-		];
+		if (
+			target.parentElement.getAttribute("id") === "player2BoardContainer" &&
+			player1.checkAlreadyPicked(playerX, playerY) === false
+		) {
+			// console.log(player1.getPrevMoves());
+			player1.launchAttack(computer._playerBoard, playerX, playerY);
 
-		player1.launchAttack(
-			computer._playerBoard,
-			Number(target.getAttribute("data-coord-X")),
-			Number(target.getAttribute("data-coord-Y"))
-		);
-		computer.generateRandomMoves();
-		const nextMove = computer.getNextMove();
-		computer.launchAttack(player1._playerBoard, nextMove[0], nextMove[1]);
+			computer.generateRandomMoves();
+			const nextMove = computer.getNextMove();
+			computer.launchAttack(player1._playerBoard, nextMove[0], nextMove[1]);
 
-		// if (computer._playerBoard.allShipsSunk()) {
-		// 	alert("Player 1 wins!");
-		// }
+			// if (computer._playerBoard.allShipsSunk()) {
+			// 	alert("Player 1 wins!");
+			// }
+		}
 	}
 };
 
