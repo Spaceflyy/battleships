@@ -6,14 +6,11 @@ const player = (pName) => {
 	const _name = pName;
 	const _shotsTaken = [];
 	const _playerBoard = gameBoard();
-	const _moves = [];
 	const getPlayerName = () => _name;
 
 	const checkAlreadyPicked = (x, y) => {
-		console.log(JSON.stringify(_shotsTaken));
-		console.log(JSON.stringify([x, y]));
 		JSON.stringify(_shotsTaken);
-		return JSON.stringify(_shotsTaken).includes(JSON.stringify([x, y]));
+		return JSON.stringify(_shotsTaken).includes([x, y]);
 	};
 
 	const launchAttack = (enemyBoard, x, y) => {
@@ -22,18 +19,16 @@ const player = (pName) => {
 		PubSub.publish("board Updated");
 	};
 
-	const generateRandomMoves = () => {
+	const getRandomCoord = () => {
 		let x = Math.floor(Math.random() * 10);
 		let y = Math.floor(Math.random() * 10);
-		while (JSON.stringify(_shotsTaken).includes([x, y])) {
+		while (checkAlreadyPicked(x, y)) {
 			x = Math.floor(Math.random() * 10);
 			y = Math.floor(Math.random() * 10);
 		}
 
-		_moves.push([x, y]);
+		return [x, y];
 	};
-
-	const getNextMove = () => _moves.pop();
 
 	const getPrevMoves = () => _shotsTaken;
 	return {
@@ -42,8 +37,7 @@ const player = (pName) => {
 		getPlayerName,
 		_playerBoard,
 		launchAttack,
-		generateRandomMoves,
-		getNextMove,
+		getRandomCoord,
 	};
 };
 

@@ -25,11 +25,10 @@ const handleClick = (event) => {
 			// console.log(player1.getPrevMoves());
 			player1.launchAttack(computer._playerBoard, playerX, playerY);
 
-			computer.generateRandomMoves();
-			const nextMove = computer.getNextMove();
+			const nextMove = computer.getRandomCoord();
 			computer.launchAttack(player1._playerBoard, nextMove[0], nextMove[1]);
 
-			// if (computer._playerBoard.allShipsSunk()) {
+			// if (player1._playerBoard.allShipsSunk()) {
 			// 	alert("Player 1 wins!");
 			// }
 		}

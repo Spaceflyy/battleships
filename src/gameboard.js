@@ -47,6 +47,16 @@ export default function gameBoard() {
 		}
 	};
 
+	const getValidSpace = (shipLength, x, y) => {
+		let valid = true;
+		for (let i = x; i < x + shipLength; i += 1) {
+			if (_board[i][y].taken !== null) {
+				valid = false;
+			}
+		}
+		return valid;
+	};
+
 	const allShipsSunk = () => _placedShips.every((element) => element.getSunk());
 
 	return {
@@ -55,5 +65,6 @@ export default function gameBoard() {
 		receiveAttack,
 		getPlacedShips,
 		allShipsSunk,
+		getValidSpace,
 	};
 }

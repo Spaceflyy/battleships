@@ -20,11 +20,16 @@ export default function gameController() {
 		player1._playerBoard.placeShip(ships[3], 0, 6);
 		player1._playerBoard.placeShip(ships[4], 0, 8);
 
-		player2._playerBoard.placeShip(ships[0], 5, 0);
-		player2._playerBoard.placeShip(ships[1], 6, 2);
-		player2._playerBoard.placeShip(ships[2], 7, 4);
-		player2._playerBoard.placeShip(ships[3], 7, 6);
-		player2._playerBoard.placeShip(ships[4], 8, 8);
+		ships.forEach((s) => {
+			let x = Math.floor(Math.random() * (10 - s.getLength()));
+			let y = Math.floor(Math.random() * 10);
+			while (!player2._playerBoard.getValidSpace(s.getLength(), x, y)) {
+				x = Math.floor(Math.random() * (10 - s.getLength()));
+				y = Math.floor(Math.random() * 10);
+			}
+
+			player2._playerBoard.placeShip(s, x, y);
+		});
 	};
 
 	const startGame = () => {
