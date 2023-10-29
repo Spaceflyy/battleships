@@ -34,6 +34,10 @@ export default function gameBoard() {
 		for (let i = x; i < x + ship.getLength(); i += 1) {
 			_board[i][y].taken = ship.getName();
 		}
+
+		// for (let i = y; i < x + ship.getLength(); i += 1) {
+		// 	_board[x][i].taken = ship.getName();
+		// }
 		_placedShips.push(ship);
 	};
 
@@ -49,11 +53,19 @@ export default function gameBoard() {
 
 	const getValidSpace = (shipLength, x, y) => {
 		let valid = true;
-		for (let i = x; i < x + shipLength; i += 1) {
-			if (_board[i][y].taken !== null) {
-				valid = false;
+
+		for (let i = x - 1; i < x + (shipLength + 1); i += 1) {
+			if (i !== -1) {
+				if (
+					(_board[i][y] !== undefined && _board[i][y].taken !== null) ||
+					(_board[i][y + 1] !== undefined && _board[i][y + 1].taken !== null) ||
+					(_board[i][y - 1] !== undefined && _board[i][y - 1].taken !== null)
+				) {
+					valid = false;
+				}
 			}
 		}
+
 		return valid;
 	};
 
