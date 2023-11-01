@@ -31,13 +31,16 @@ export default function gameBoard() {
 	const getPlacedShips = () => _placedShips;
 
 	const placeShip = (ship, x, y) => {
-		for (let i = x; i < x + ship.getLength(); i += 1) {
-			_board[i][y].taken = ship.getName();
+		if (ship.getOrientation()) {
+			for (let i = y; i < y + ship.getLength(); i += 1) {
+				_board[x][i].taken = ship.getName();
+			}
+		} else {
+			for (let i = x; i < x + ship.getLength(); i += 1) {
+				_board[i][y].taken = ship.getName();
+			}
 		}
 
-		// for (let i = y; i < x + ship.getLength(); i += 1) {
-		// 	_board[x][i].taken = ship.getName();
-		// }
 		_placedShips.push(ship);
 	};
 
@@ -51,17 +54,36 @@ export default function gameBoard() {
 		}
 	};
 
-	const getValidSpace = (shipLength, x, y) => {
+	const getValidSpace = (ship, x, y) => {
 		let valid = true;
-
-		for (let i = x - 1; i < x + (shipLength + 1); i += 1) {
-			if (i !== -1) {
-				if (
-					(_board[i][y] !== undefined && _board[i][y].taken !== null) ||
-					(_board[i][y + 1] !== undefined && _board[i][y + 1].taken !== null) ||
-					(_board[i][y - 1] !== undefined && _board[i][y - 1].taken !== null)
-				) {
+		if (ship.getOrientation()) {
+			for (let i = y - 1; i < y + (ship.getLength() + 1); i += 1) {
+				if (_board[x][i] !== undefined && _board[x][i].taken !== null) {
 					valid = false;
+				}
+
+				if (x + 1 <= 9) {
+					if (_board[x + 1][i] !== undefined && _board[x + 1][i].taken !== null) {
+						valid = false;
+					}
+				}
+
+				if (x - 1 >= 0) {
+					if (_board[x - 1][i] !== undefined && _board[x - 1][i].taken !== null) {
+						valid = false;
+					}
+				}
+			}
+		} else {
+			for (let i = x - 1; i < x + (ship.getLength() + 1); i += 1) {
+				if (i !== -1) {
+					if (
+						(_board[i][y] !== undefined && _board[i][y].taken !== null) ||
+						(_board[i][y + 1] !== undefined && _board[i][y + 1].taken !== null) ||
+						(_board[i][y - 1] !== undefined && _board[i][y - 1].taken !== null)
+					) {
+						valid = false;
+					}
 				}
 			}
 		}
