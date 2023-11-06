@@ -14,21 +14,59 @@ html,
 	padding: 0px;
 }
 #boardContainer {
+	position: relative;
 	display: flex;
 	gap: 50px;
 	align-items: center;
 	justify-content: center;
 }
 #player1BoardContainer,
-#player2BoardContainer {
+#player2BoardContainer,
+#modalBoard {
 	display: flex;
 	width: 500px;
 	height: 500px;
 	flex-wrap: wrap;
 }
 
+#player1BoardContainer,
+#player2BoardContainer {
+	display: none;
+}
+
 .boardCell {
 	height: 50px;
 	width: 50px;
 	border: red solid 1px;
+}
+.boardCell:hover {
+	background-color: grey;
+}
+#uiContainer {
+	display: flex;
+	align-items: center;
+	gap: 50px;
+}
+#modalContainer {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	padding: 2rem;
+	border: red solid;
+}
+
+#cellContainer {
+	display: flex;
+	width: min-content;
+	border: white solid;
+}
+#shipContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	padding: 1rem;
+	border: orange solid;
+	width: min-content;
 }

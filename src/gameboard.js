@@ -1,4 +1,6 @@
 /* eslint-disable no-underscore-dangle */
+import PubSub from "pubsub-js";
+
 export default function gameBoard() {
 	const _board = [];
 	const _placedShips = [];
@@ -15,44 +17,6 @@ export default function gameBoard() {
 			}
 		}
 	})();
-
-	const getBoard = () => _board;
-
-	const getShip = (x, y) => {
-		let index;
-		for (let i = 0; i < _placedShips.length; i += 1) {
-			if (_placedShips[i].getName() === _board[x][y].taken) {
-				index = i;
-			}
-		}
-		return index;
-	};
-
-	const getPlacedShips = () => _placedShips;
-
-	const placeShip = (ship, x, y) => {
-		if (ship.getOrientation()) {
-			for (let i = y; i < y + ship.getLength(); i += 1) {
-				_board[x][i].taken = ship.getName();
-			}
-		} else {
-			for (let i = x; i < x + ship.getLength(); i += 1) {
-				_board[i][y].taken = ship.getName();
-			}
-		}
-
-		_placedShips.push(ship);
-	};
-
-	const receiveAttack = (x, y) => {
-		const shipAtLoc = _placedShips[getShip(x, y)];
-		if (shipAtLoc !== undefined) {
-			_board[x][y].status = "hit";
-			shipAtLoc.setHits();
-		} else {
-			_board[x][y].status = "miss";
-		}
-	};
 
 	const getValidSpace = (ship, x, y) => {
 		let valid = true;
@@ -89,6 +53,44 @@ export default function gameBoard() {
 		}
 
 		return valid;
+	};
+
+	const getBoard = () => _board;
+
+	const getShip = (x, y) => {
+		let index;
+		for (let i = 0; i < _placedShips.length; i += 1) {
+			if (_placedShips[i].getName() === _board[x][y].taken) {
+				index = i;
+			}
+		}
+		return index;
+	};
+
+	const getPlacedShips = () => _placedShips;
+
+	const placeShip = (ship, x, y) => {
+		if (ship.getOrientation()) {
+			for (let i = y; i < y + ship.getLength(); i += 1) {
+				_board[x][i].taken = ship.getName();
+			}
+		} else {
+			for (let i = x; i < x + ship.getLength(); i += 1) {
+				_board[i][y].taken = ship.getName();
+			}
+		}
+		_placedShips.push(ship);
+		PubSub.publish("board Updated");
+	};
+
+	const receiveAttack = (x, y) => {
+		const shipAtLoc = _placedShips[getShip(x, y)];
+		if (shipAtLoc !== undefined) {
+			_board[x][y].status = "hit";
+			shipAtLoc.setHits();
+		} else {
+			_board[x][y].status = "miss";
+		}
 	};
 
 	const allShipsSunk = () => _placedShips.every((element) => element.getSunk());

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-export default function ship(shipLength, shipName, vertical) {
+export default function ship(shipLength, shipName, vertical = false) {
 	const _length = shipLength;
 	let _hits = 0;
 	let _isSunk = false;
