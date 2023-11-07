@@ -40,13 +40,19 @@ export default function gameBoard() {
 			}
 		} else {
 			for (let i = x - 1; i < x + (ship.getLength() + 1); i += 1) {
-				if (i !== -1) {
-					if (
-						(_board[i][y] !== undefined && _board[i][y].taken !== null) ||
-						(_board[i][y + 1] !== undefined && _board[i][y + 1].taken !== null) ||
-						(_board[i][y - 1] !== undefined && _board[i][y - 1].taken !== null)
-					) {
+				if (i > 0 && i < 10) {
+					if (_board[i][y] !== undefined && _board[i][y].taken !== null) {
 						valid = false;
+					}
+					if (y + 1 <= 9) {
+						if (_board[i][y + 1] !== undefined && _board[i][y + 1].taken !== null) {
+							valid = false;
+						}
+					}
+					if (y - 1 >= 0) {
+						if (_board[i][y - 1] !== undefined && _board[i][y - 1].taken !== null) {
+							valid = false;
+						}
 					}
 				}
 			}
