@@ -22,6 +22,9 @@ export default function gameBoard() {
 		let valid = true;
 		if (ship.getOrientation()) {
 			for (let i = y - 1; i < y + (ship.getLength() + 1); i += 1) {
+				if (i > 10) {
+					valid = false;
+				}
 				if (_board[x][i] !== undefined && _board[x][i].taken !== null) {
 					valid = false;
 				}
@@ -40,6 +43,9 @@ export default function gameBoard() {
 			}
 		} else {
 			for (let i = x - 1; i < x + (ship.getLength() + 1); i += 1) {
+				if (i > 10) {
+					valid = false;
+				}
 				if (i > 0 && i < 10) {
 					if (_board[i][y] !== undefined && _board[i][y].taken !== null) {
 						valid = false;

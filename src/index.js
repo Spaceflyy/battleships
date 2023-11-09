@@ -14,8 +14,8 @@ const computer = player("Computer");
 
 game.newGame(player1, computer);
 // view.renderShipPlacementModal();
-// view.renderBoards(player1._playerBoard.getBoard(), 1);
-// view.renderBoards(computer._playerBoard.getBoard(), 2);
+view.renderBoards(player1._playerBoard.getBoard(), 1);
+view.renderBoards(computer._playerBoard.getBoard(), 2);
 view.renderBoards(player1._playerBoard.getBoard(), 3);
 
 const handleClick = (event) => {
@@ -53,18 +53,24 @@ const handleClick = (event) => {
 			ship(2, "Patrol Boat"),
 		];
 
-		if (
-			player1._playerBoard.getValidSpace(
-				playerShips[game.getSelectedShip()],
-				Number(target.getAttribute("data-coord-x")),
-				Number(target.getAttribute("data-coord-y"))
-			)
-		) {
-			player1._playerBoard.placeShip(
-				playerShips[game.getSelectedShip()],
-				Number(target.getAttribute("data-coord-x")),
-				Number(target.getAttribute("data-coord-y"))
+		if (game.getSelectedShip() !== null) {
+			const x = Number(target.getAttribute("data-coord-x"));
+			const y = Number(target.getAttribute("data-coord-y"));
+
+			const shipElement = document.querySelector(
+				`[shipid="${game.getSelectedShip()}"]`
 			);
+			if (
+				player1._playerBoard.getValidSpace(
+					playerShips[game.getSelectedShip()],
+					x,
+					y
+				)
+			) {
+				shipElement.remove();
+				player1._playerBoard.placeShip(playerShips[game.getSelectedShip()], x, y);
+				game.setSelectedShip(null);
+			}
 		}
 	}
 };
