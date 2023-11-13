@@ -45,6 +45,8 @@ const handleClick = (event) => {
 	}
 
 	if (target.parentElement.getAttribute("id") === "modalBoard") {
+		const verticalTick = document.getElementById("verticalPlacement");
+
 		const playerShips = [
 			ship(5, "Carrier"),
 			ship(4, "Battleship"),
@@ -67,6 +69,9 @@ const handleClick = (event) => {
 					y
 				)
 			) {
+				if (verticalTick.checked) {
+					playerShips[game.getSelectedShip()].setOrientation(true);
+				}
 				shipElement.remove();
 				player1._playerBoard.placeShip(playerShips[game.getSelectedShip()], x, y);
 				game.setSelectedShip(null);
