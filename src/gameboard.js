@@ -20,6 +20,10 @@ export default function gameBoard() {
 
 	const getValidSpace = (ship, x, y) => {
 		const valid = true;
+
+		if (x + ship.getLength() > 10 || y + ship.getLength() > 10) {
+			return false;
+		}
 		if (ship.getOrientation()) {
 			for (let i = y - 1; i < y + ship.getLength() + 1; i += 1) {
 				if (i >= 0 && i <= 9) {
@@ -40,7 +44,7 @@ export default function gameBoard() {
 			}
 		} else {
 			for (let i = x - 1; i < x + ship.getLength() + 1; i += 1) {
-				if (i > 0 && i <= 9) {
+				if (i >= 0 && i <= 9) {
 					if (_board[i][y] !== undefined && _board[i][y].taken !== null) {
 						return false;
 					}

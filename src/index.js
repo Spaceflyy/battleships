@@ -13,7 +13,6 @@ const player1 = player("Luke");
 const computer = player("Computer");
 
 game.newGame(player1, computer);
-// view.renderShipPlacementModal();
 view.renderBoards(player1._playerBoard.getBoard(), 1);
 view.renderBoards(computer._playerBoard.getBoard(), 2);
 view.renderBoards(player1._playerBoard.getBoard(), 3);
