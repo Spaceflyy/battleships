@@ -29,11 +29,6 @@ html,
 	flex-wrap: wrap;
 }
 
-#player1BoardContainer,
-#player2BoardContainer {
-	display: none;
-}
-
 .boardCell {
 	height: 50px;
 	width: 50px;

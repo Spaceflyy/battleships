@@ -25,9 +25,7 @@ export default function gameController() {
 			let x = 0;
 			let y = 0;
 			const orien = Math.random() >= 0.5;
-
 			s.setOrientation(orien);
-
 			if (s.getOrientation() === true) {
 				y = Math.floor(Math.random() * (10 - s.getLength()));
 				x = Math.floor(Math.random() * 10);
@@ -44,7 +42,6 @@ export default function gameController() {
 					y = Math.floor(Math.random() * 10);
 				}
 			}
-
 			player2._playerBoard.placeShip(s, x, y);
 		});
 	};

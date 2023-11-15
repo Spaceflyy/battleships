@@ -62,6 +62,11 @@ const handleClick = (event) => {
 			const shipElement = document.querySelector(
 				`[shipid="${game.getSelectedShip()}"]`
 			);
+
+			if (verticalTick.checked) {
+				playerShips[game.getSelectedShip()].setOrientation(true);
+			}
+
 			if (
 				player1._playerBoard.getValidSpace(
 					playerShips[game.getSelectedShip()],
@@ -69,10 +74,7 @@ const handleClick = (event) => {
 					y
 				)
 			) {
-				if (verticalTick.checked) {
-					playerShips[game.getSelectedShip()].setOrientation(true);
-				}
-				shipElement.remove();
+				shipElement.style.visibility = "hidden";
 				player1._playerBoard.placeShip(playerShips[game.getSelectedShip()], x, y);
 				game.setSelectedShip(null);
 			}
