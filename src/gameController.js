@@ -3,14 +3,6 @@
 import ship from "./ship";
 
 export default function gameController() {
-	const ships = [
-		ship(5, "Carrier"),
-		ship(4, "Battleship"),
-		ship(3, "Destroyer"),
-		ship(3, "SubMarine"),
-		ship(2, "Patrol Boat"),
-	];
-
 	let _selectedShip = null;
 
 	const setSelectedShip = (shipArrLoc) => {
@@ -21,7 +13,7 @@ export default function gameController() {
 
 	const newGame = (player1, player2) => {
 		// place ships randomly on computer board
-		ships.forEach((s) => {
+		player2._playerShips.forEach((s) => {
 			let x = 0;
 			let y = 0;
 			const orien = Math.random() >= 0.5;
@@ -52,5 +44,5 @@ export default function gameController() {
 		// computer chooses attack
 	};
 
-	return { newGame, setSelectedShip, getSelectedShip, ships };
+	return { newGame, setSelectedShip, getSelectedShip };
 }

@@ -1,3 +1,5 @@
+import player from "./player";
+
 /* eslint-disable no-underscore-dangle */
 const player1BoardContainer = document.getElementById("player1BoardContainer");
 const player2BoardContainer = document.getElementById("player2BoardContainer");
@@ -5,6 +7,18 @@ const modalBoard = document.getElementById("modalBoard");
 
 const root = document.getElementById("boardContainer");
 const DOMcontroller = () => {
+	const renderShipPlacement = () => {
+		const modelContainer = document.getElementById("modalContainer");
+		if (modelContainer.style.display === "none") {
+			modelContainer.style.display = "flex";
+		} else {
+			modelContainer.style.display = "none";
+		}
+
+		player1BoardContainer.style.display = "flex";
+		player2BoardContainer.style.display = "flex";
+	};
+
 	const renderBoards = (playerBoard, playerNo) => {
 		if (playerNo === 1) {
 			player1BoardContainer.innerHTML = "";
@@ -24,10 +38,11 @@ const DOMcontroller = () => {
 				cell.classList.add("boardCell");
 				cell.setAttribute("data-coord-X", j);
 				cell.setAttribute("data-coord-Y", i);
-
+				// if (playerNo === 1 || playerNo === 3) {
 				if (playerBoard[j][i].taken !== null) {
 					cell.style.backgroundColor = "black";
 				}
+				// }
 				if (playerBoard[j][i].status === "miss") {
 					cell.style.backgroundColor = "cyan";
 				}
@@ -65,7 +80,7 @@ const DOMcontroller = () => {
 			handler(event);
 		});
 	}
-	return { bindClick, renderBoards, addSelected };
+	return { bindClick, renderBoards, addSelected, renderShipPlacement };
 };
 
 export default DOMcontroller;

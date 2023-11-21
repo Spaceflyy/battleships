@@ -4,7 +4,6 @@ import PubSub from "pubsub-js";
 import gameController from "./gameController";
 import DOMcontroller from "./DOMcontroller";
 import player from "./player";
-import ship from "./ship";
 
 const game = gameController();
 const view = DOMcontroller();
@@ -13,8 +12,7 @@ const player1 = player("Luke");
 const computer = player("Computer");
 
 game.newGame(player1, computer);
-view.renderBoards(player1._playerBoard.getBoard(), 1);
-view.renderBoards(computer._playerBoard.getBoard(), 2);
+
 view.renderBoards(player1._playerBoard.getBoard(), 3);
 
 const handleClick = (event) => {
@@ -32,9 +30,11 @@ const handleClick = (event) => {
 			const nextMove = computer.getRandomCoord();
 			computer.launchAttack(player1._playerBoard, nextMove[0], nextMove[1]);
 
-			// if (player1._playerBoard.allShipsSunk()) {
-			// 	alert("Player 1 wins!");
-			// }
+			if (player1._playerBoard.allShipsSunk()) {
+				alert("Player 2 wins!");
+			} else if (computer._playerBoard.allShipsSunk()) {
+				alert("Player 1 wins!");
+			}
 		}
 	}
 
@@ -46,14 +46,6 @@ const handleClick = (event) => {
 	if (target.parentElement.getAttribute("id") === "modalBoard") {
 		const verticalTick = document.getElementById("verticalPlacement");
 
-		const playerShips = [
-			ship(5, "Carrier"),
-			ship(4, "Battleship"),
-			ship(3, "Destroyer"),
-			ship(3, "SubMarine"),
-			ship(2, "Patrol Boat"),
-		];
-
 		if (game.getSelectedShip() !== null) {
 			const x = Number(target.getAttribute("data-coord-x"));
 			const y = Number(target.getAttribute("data-coord-y"));
@@ -63,19 +55,31 @@ const handleClick = (event) => {
 			);
 
 			if (verticalTick.checked) {
-				playerShips[game.getSelectedShip()].setOrientation(true);
+				player1._playerShips[game.getSelectedShip()].setOrientation(true);
+			} else {
+				player1._playerShips[game.getSelectedShip()].setOrientation(false);
 			}
 
 			if (
 				player1._playerBoard.getValidSpace(
-					playerShips[game.getSelectedShip()],
+					player1._playerShips[game.getSelectedShip()],
 					x,
 					y
 				)
 			) {
 				shipElement.style.visibility = "hidden";
-				player1._playerBoard.placeShip(playerShips[game.getSelectedShip()], x, y);
+				player1._playerBoard.placeShip(
+					player1._playerShips[game.getSelectedShip()],
+					x,
+					y
+				);
+				player1._playerShips[game.getSelectedShip()] = null;
+				console.log(player1._playerShips);
 				game.setSelectedShip(null);
+			}
+
+			if (player1._playerShips.every((val) => val === player1._playerShips[0])) {
+				view.renderShipPlacement();
 			}
 		}
 	}

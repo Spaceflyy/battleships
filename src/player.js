@@ -1,12 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 import PubSub from "pubsub-js";
 import gameBoard from "./gameboard";
+import ship from "./ship";
 
 const player = (pName) => {
 	const _name = pName;
 	const _shotsTaken = [];
 	const _playerBoard = gameBoard();
 	const getPlayerName = () => _name;
+	const _playerShips = [
+		ship(5, "Carrier"),
+		ship(4, "Battleship"),
+		ship(3, "Destroyer"),
+		ship(3, "SubMarine"),
+		ship(2, "Patrol Boat"),
+	];
 
 	const checkAlreadyPicked = (x, y) => {
 		JSON.stringify(_shotsTaken);
@@ -38,6 +46,7 @@ const player = (pName) => {
 		_playerBoard,
 		launchAttack,
 		getRandomCoord,
+		_playerShips,
 	};
 };
 
