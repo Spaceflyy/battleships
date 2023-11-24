@@ -1,5 +1,5 @@
 import player from "./player";
-
+import icon from "./imgs/github-mark-white.png";
 /* eslint-disable no-underscore-dangle */
 const player1BoardContainer = document.getElementById("player1BoardContainer");
 const player2BoardContainer = document.getElementById("player2BoardContainer");
@@ -38,11 +38,12 @@ const DOMcontroller = () => {
 				cell.classList.add("boardCell");
 				cell.setAttribute("data-coord-X", j);
 				cell.setAttribute("data-coord-Y", i);
-				// if (playerNo === 1 || playerNo === 3) {
-				if (playerBoard[j][i].taken !== null) {
-					cell.style.backgroundColor = "black";
+
+				if (playerNo === 1 || playerNo === 3) {
+					if (playerBoard[j][i].taken !== null) {
+						cell.style.backgroundColor = "black";
+					}
 				}
-				// }
 				if (playerBoard[j][i].status === "miss") {
 					cell.style.backgroundColor = "cyan";
 				}
