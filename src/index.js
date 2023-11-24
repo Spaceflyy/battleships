@@ -17,7 +17,13 @@ view.renderBoards(player1._playerBoard.getBoard(), 3);
 
 const handleClick = (event) => {
 	const { target } = event;
-
+	if (target.getAttribute("id") === "verticalPlacement") {
+		if (target.classList.contains("on")) {
+			target.classList.remove("on");
+		} else {
+			target.classList.add("on");
+		}
+	}
 	if (target.getAttribute("class") === "boardCell") {
 		const playerX = Number(target.getAttribute("data-coord-X"));
 		const playerY = Number(target.getAttribute("data-coord-Y"));
@@ -54,7 +60,7 @@ const handleClick = (event) => {
 				`[shipid="${game.getSelectedShip()}"]`
 			);
 
-			if (verticalTick.checked) {
+			if (verticalTick.getAttribute("class") === "on") {
 				player1._playerShips[game.getSelectedShip()].setOrientation(true);
 			} else {
 				player1._playerShips[game.getSelectedShip()].setOrientation(false);
