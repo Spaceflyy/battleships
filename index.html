@@ -5,7 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Battleships</title>
 	<script defer src="main.js"></script></head>
+
 	<body>
+		<header><h1>BattleShips</h1></header>
 		<div id="boardContainer">
 			<div id="modalContainer">
 				<h1>Place your fleet!</h1>
@@ -40,9 +42,13 @@
 							<div class="boardCell" style="background-color: black"></div>
 						</div>
 
-						<label for="verticalPlacement"
-							>Place Vertical?
-							<input type="checkbox" name="verticalPlacement" id="verticalPlacement" />
+						<label for="verticalPlacement">
+							<input
+								type="button"
+								name="verticalPlacement"
+								id="verticalPlacement"
+								value="Vertical Toggle"
+							/>
 						</label>
 					</div>
 
@@ -52,5 +58,10 @@
 			<div id="player1BoardContainer"></div>
 			<div id="player2BoardContainer"></div>
 		</div>
+		<footer>
+			<a href="https://github.com/Spaceflyy"
+				><img src="./imgs/github-mark-white.png" alt="" /> Spaceflyy</a
+			>
+		</footer>
 	</body>
 </html>
