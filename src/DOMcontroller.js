@@ -3,12 +3,29 @@ import icon from "./imgs/github-mark-white.png";
 /* eslint-disable no-underscore-dangle */
 const player1BoardContainer = document.getElementById("player1BoardContainer");
 const player2BoardContainer = document.getElementById("player2BoardContainer");
+const boardContainer = document.getElementById("boardContainer");
 const modalBoard = document.getElementById("modalBoard");
+const root = document.getElementById("mainContainer");
+const footer = document.querySelector("footer a");
 
-const root = document.getElementById("boardContainer");
+const githubicon = new Image();
+githubicon.src = icon;
+footer.appendChild(githubicon);
+
 const DOMcontroller = () => {
+	const renderGameOver = (winner = "bob") => {
+		const gameOverMenu = document.getElementById("gameOver");
+		const winnerText = document.getElementById("winnerText");
+
+		if (gameOverMenu.style.display === "none") {
+			gameOverMenu.style.display = "block";
+			winnerText.textContent = `${winner} wins!`;
+		} else {
+			gameOverMenu.style.display = "none";
+		}
+	};
 	const renderShipPlacement = () => {
-		const modelContainer = document.getElementById("modalContainer");
+		const modelContainer = document.getElementById("placeShipsContainer");
 		if (modelContainer.style.display === "none") {
 			modelContainer.style.display = "flex";
 		} else {
@@ -17,6 +34,7 @@ const DOMcontroller = () => {
 
 		player1BoardContainer.style.display = "flex";
 		player2BoardContainer.style.display = "flex";
+		boardContainer.style.display = "flex";
 	};
 
 	const renderBoards = (playerBoard, playerNo) => {
@@ -39,11 +57,10 @@ const DOMcontroller = () => {
 				cell.setAttribute("data-coord-X", j);
 				cell.setAttribute("data-coord-Y", i);
 
-				if (playerNo === 1 || playerNo === 3) {
-					if (playerBoard[j][i].taken !== null) {
-						cell.style.backgroundColor = "black";
-					}
+				if (playerBoard[j][i].taken !== null) {
+					cell.style.backgroundColor = "black";
 				}
+
 				if (playerBoard[j][i].status === "miss") {
 					cell.style.backgroundColor = "cyan";
 				}
@@ -81,7 +98,13 @@ const DOMcontroller = () => {
 			handler(event);
 		});
 	}
-	return { bindClick, renderBoards, addSelected, renderShipPlacement };
+	return {
+		bindClick,
+		renderBoards,
+		addSelected,
+		renderShipPlacement,
+		renderGameOver,
+	};
 };
 
 export default DOMcontroller;

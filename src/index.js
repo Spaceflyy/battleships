@@ -14,7 +14,7 @@ const computer = player("Computer");
 game.newGame(player1, computer);
 
 view.renderBoards(player1._playerBoard.getBoard(), 3);
-
+view.renderGameOver();
 const handleClick = (event) => {
 	const { target } = event;
 	if (target.getAttribute("id") === "verticalPlacement") {
@@ -37,9 +37,9 @@ const handleClick = (event) => {
 			computer.launchAttack(player1._playerBoard, nextMove[0], nextMove[1]);
 
 			if (player1._playerBoard.allShipsSunk()) {
-				alert("Player 2 wins!");
+				view.renderGameOver(computer.getPlayerName());
 			} else if (computer._playerBoard.allShipsSunk()) {
-				alert("Player 1 wins!");
+				view.renderGameOver(player1.getPlayerName());
 			}
 		}
 	}

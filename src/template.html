@@ -8,8 +8,18 @@
 
 	<body>
 		<header><h1>BattleShips</h1></header>
-		<div id="boardContainer">
-			<div id="modalContainer">
+		<div id="gameOver">
+			<h2>Game Over</h2>
+			<div id="gameOverInner">
+				<h2 id="winnerText">Player 1 wins!</h2>
+				<label for="verticalPlacement">
+					<input type="button" name="restart" id="restartBtn" value="Play Again" />
+				</label>
+			</div>
+		</div>
+
+		<div id="mainContainer">
+			<div id="placeShipsContainer">
 				<h1>Place your fleet!</h1>
 				<div id="uiContainer">
 					<div id="shipContainer">
@@ -55,13 +65,19 @@
 					<div id="modalBoard"></div>
 				</div>
 			</div>
-			<div id="player1BoardContainer"></div>
-			<div id="player2BoardContainer"></div>
+			<div id="boardContainer">
+				<div id="titleContainer">
+					<h2>Player 1</h2>
+					<h2>Computer</h2>
+				</div>
+				<div id="gameContainer">
+					<div id="player1BoardContainer"></div>
+					<div id="player2BoardContainer"></div>
+				</div>
+			</div>
 		</div>
-		<footer>
-			<a href="https://github.com/Spaceflyy"
-				><img src="./imgs/github-mark-white.png" alt="" /> Spaceflyy</a
-			>
+		<footer id="footer">
+			<a href="https://github.com/Spaceflyy">Spaceflyy</a>
 		</footer>
 	</body>
 </html>
