@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import "./style.css";
-import PubSub from "pubsub-js";
+import PubSub, { publish } from "pubsub-js";
 import gameController from "./gameController";
 import DOMcontroller from "./DOMcontroller";
 import player from "./player";
@@ -8,8 +8,8 @@ import player from "./player";
 const game = gameController();
 const view = DOMcontroller();
 
-const player1 = player("Luke");
-const computer = player("Computer");
+let player1 = player("Player");
+let computer = player("Computer");
 
 game.newGame(player1, computer);
 
@@ -17,6 +17,7 @@ view.renderBoards(player1._playerBoard.getBoard(), 3);
 view.renderGameOver();
 const handleClick = (event) => {
 	const { target } = event;
+
 	if (target.getAttribute("id") === "verticalPlacement") {
 		if (target.classList.contains("on")) {
 			target.classList.remove("on");
@@ -24,6 +25,7 @@ const handleClick = (event) => {
 			target.classList.add("on");
 		}
 	}
+
 	if (target.getAttribute("class") === "boardCell") {
 		const playerX = Number(target.getAttribute("data-coord-X"));
 		const playerY = Number(target.getAttribute("data-coord-Y"));
@@ -44,7 +46,7 @@ const handleClick = (event) => {
 		}
 	}
 
-	if (target.parentElement.getAttribute("id") === "cellContainer") {
+	if (target.parentElement.getAttribute("class") === "cellContainer") {
 		view.addSelected(target.parentElement);
 		game.setSelectedShip(target.parentElement.getAttribute("shipId"));
 	}
@@ -80,7 +82,6 @@ const handleClick = (event) => {
 					y
 				);
 				player1._playerShips[game.getSelectedShip()] = null;
-				console.log(player1._playerShips);
 				game.setSelectedShip(null);
 			}
 
@@ -88,6 +89,16 @@ const handleClick = (event) => {
 				view.renderShipPlacement();
 			}
 		}
+	}
+
+	if (target.getAttribute("id") === "restartBtn") {
+		player1 = player("Player");
+		computer = player("Computer");
+		console.log(player1._playerShips);
+		view.renderGameOver();
+		game.newGame(player1, computer);
+		PubSub.publish("board Updated");
+		view.renderShipPlacement();
 	}
 };
 

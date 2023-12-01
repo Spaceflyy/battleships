@@ -127,7 +127,7 @@ body {
 	padding: 1rem;
 }
 
-#cellContainer {
+.cellContainer {
 	display: flex;
 	width: min-content;
 	border: var(--uiBgLight) solid;
@@ -136,7 +136,7 @@ body {
 	transition: 0.25s;
 }
 
-#cellContainer:hover {
+.cellContainer:hover {
 	transition: 0.25s;
 	scale: 1.1;
 }

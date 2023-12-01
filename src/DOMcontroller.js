@@ -1,5 +1,6 @@
 import player from "./player";
 import icon from "./imgs/github-mark-white.png";
+import ship from "./ship";
 /* eslint-disable no-underscore-dangle */
 const player1BoardContainer = document.getElementById("player1BoardContainer");
 const player2BoardContainer = document.getElementById("player2BoardContainer");
@@ -26,15 +27,27 @@ const DOMcontroller = () => {
 	};
 	const renderShipPlacement = () => {
 		const modelContainer = document.getElementById("placeShipsContainer");
+		const shipContainers = Array.from(
+			document.getElementsByClassName("cellContainer")
+		);
+
+		shipContainers.forEach((element) => {
+			element.style.visibility = "visible";
+			element.style.removeProperty("border");
+		});
+
 		if (modelContainer.style.display === "none") {
 			modelContainer.style.display = "flex";
+
+			player1BoardContainer.style.display = "none";
+			player2BoardContainer.style.display = "none";
+			boardContainer.style.display = "none";
 		} else {
 			modelContainer.style.display = "none";
+			player1BoardContainer.style.display = "flex";
+			player2BoardContainer.style.display = "flex";
+			boardContainer.style.display = "flex";
 		}
-
-		player1BoardContainer.style.display = "flex";
-		player2BoardContainer.style.display = "flex";
-		boardContainer.style.display = "flex";
 	};
 
 	const renderBoards = (playerBoard, playerNo) => {
