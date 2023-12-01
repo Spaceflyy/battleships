@@ -68,11 +68,11 @@ const DOMcontroller = () => {
 				cell.classList.add("boardCell");
 				cell.setAttribute("data-coord-X", j);
 				cell.setAttribute("data-coord-Y", i);
-
-				if (playerBoard[j][i].taken !== null) {
-					cell.style.backgroundColor = "black";
+				if (playerNo !== 2) {
+					if (playerBoard[j][i].taken !== null) {
+						cell.style.backgroundColor = "black";
+					}
 				}
-
 				if (playerBoard[j][i].status === "miss") {
 					cell.style.backgroundColor = "cyan";
 				}
