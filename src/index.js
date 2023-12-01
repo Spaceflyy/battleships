@@ -94,7 +94,6 @@ const handleClick = (event) => {
 	if (target.getAttribute("id") === "restartBtn") {
 		player1 = player("Player");
 		computer = player("Computer");
-		console.log(player1._playerShips);
 		view.renderGameOver();
 		game.newGame(player1, computer);
 		PubSub.publish("board Updated");
