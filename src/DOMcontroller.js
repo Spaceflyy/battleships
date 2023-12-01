@@ -1,17 +1,16 @@
-import player from "./player";
-import icon from "./imgs/github-mark-white.png";
-import ship from "./ship";
+// import icon from "./imgs/github-mark-white.png";
+
 /* eslint-disable no-underscore-dangle */
 const player1BoardContainer = document.getElementById("player1BoardContainer");
 const player2BoardContainer = document.getElementById("player2BoardContainer");
 const boardContainer = document.getElementById("boardContainer");
 const modalBoard = document.getElementById("modalBoard");
 const root = document.getElementById("mainContainer");
-const footer = document.querySelector("footer a");
+// const footer = document.querySelector("footer a");
 
-const githubicon = new Image();
-githubicon.src = icon;
-footer.appendChild(githubicon);
+// const githubicon = new Image();
+// githubicon.src = icon;
+// footer.appendChild(githubicon);
 
 const DOMcontroller = () => {
 	const renderGameOver = (winner = "bob") => {

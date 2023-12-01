@@ -18,9 +18,7 @@ module.exports = {
 	output: {
 		filename: "[name].js",
 		path: path.resolve(__dirname, "dist"),
-		assetModuleFilename: "src/assets/images/[name].[ext]",
-
-		// assetModuleFilename: "imgs/[name][ext][query]",
+		assetModuleFilename: "imgs/[name][ext][query]",
 		clean: true,
 	},
 	// optimization: {
@@ -33,7 +31,7 @@ module.exports = {
 				use: ["style-loader", "css-loader"],
 			},
 			{
-				test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: "asset/resource",
 			},
 		],
